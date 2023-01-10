@@ -22,6 +22,10 @@ import {createStackNavigator} from '@react-navigation/stack'
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native'
 
 import { SignUp } from './screens';
+import OtpChange from './screens/otpscreen';
+import SettingsScreen from './screens/settings';
+import SetNewPassword from './screens/setnewpassword';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const theme = {
   ...DefaultTheme,
@@ -32,19 +36,23 @@ const theme = {
 }
 
 const Stack = createStackNavigator()
+const Tab = createBottomTabNavigator();
+
 
 const App = () => {
   return (
     <NavigationContainer theme={theme}>
-      <Stack.Navigator
+      <Tab.Navigator
         screenOptions={{
           headerShown: false
         }}
-        initialRoutesName={'SignUp'}
+        initialRoutesName={'change-password'}
       >
-        <Stack.Screen name='Signup' component={SignUp} />
+        <Tab.Screen name='change-password' component={SetNewPassword} />
+        <Tab.Screen name='Settings' component={SettingsScreen}/>
+        <Tab.Screen name='Otp' component={OtpChange}/>
 
-      </Stack.Navigator>
+      </Tab.Navigator>
       
     </NavigationContainer>
   )
